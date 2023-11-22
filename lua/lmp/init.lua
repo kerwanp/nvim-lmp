@@ -1,1 +1,1 @@
-require "lmp.mappings"
+require("lmp.mappings")

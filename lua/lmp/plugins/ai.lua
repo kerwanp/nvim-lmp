@@ -1,5 +1,3 @@
-
-
 return {
 	{
 		"zbirenbaum/copilot.lua",
@@ -11,7 +9,6 @@ return {
 				panel = {
 					enabled = true,
 					auto_refresh = true,
-
 				},
 				suggestion = {
 					enabled = true,
@@ -29,14 +26,6 @@ return {
 					vim.b.copilot_suggestion_hidden = false
 				end)
 			end
-
 		end,
 	},
-	{
-		"David-Kunz/gen.nvim",
-		config = function()
-			require("gen").model = "codellama"
-		end,
-	}
-
 }

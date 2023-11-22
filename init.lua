@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.mapleaderlocal = ' '
+vim.g.mapleader = " "
+vim.g.mapleaderlocal = " "
 vim.wo.number = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -22,13 +22,13 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 	},
-	{ import = 'lmp.plugins' },
+	{ import = "lmp.plugins" },
 })
 
 require("neodev").setup()
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
 vim.o.guifont = "FiraCode Nerd Font Mono:h22"
 vim.o.clipboard = "unnamedplus"
 
-require "lmp"
+require("lmp")
