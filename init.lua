@@ -33,6 +33,8 @@ vim.o.clipboard = "unnamedplus"
 vim.o.scrolloff = 4
 vim.o.shiftround = true
 vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.smartindent = true
 vim.o.relativenumber = true
 vim.o.showmode = false
 

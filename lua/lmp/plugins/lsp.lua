@@ -31,7 +31,7 @@ return {
           })
         end,
         keys = {
-          { "K",          vim.lsp.buf.hover,       desc = "LSP Hover" },
+          { "K", vim.lsp.buf.hover, desc = "LSP Hover" },
           {
             "gd",
             function()

@@ -8,6 +8,14 @@ return {
       region_check_events = "CursorMoved",
     },
     event = "InsertEnter",
+    config = function(_, opts)
+      if opts then
+        require("luasnip").config.setup(opts)
+      end
+      vim.tbl_map(function(type)
+        require("luasnip.loaders.from_" .. type).lazy_load()
+      end, { "vscode", "snipmate", "lua" })
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -29,7 +37,7 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      cmp.setup({
+      return {
         preselect = cmp.PreselectMode.None,
         snippet = {
           expand = function(args)
@@ -73,13 +81,20 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "buffer",   priority = 500 },
-          { name = "path",     priority = 250 },
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "path" },
+        }, {
+          { name = "buffer" },
         }),
         formatting = {},
-      })
+      }
+    end,
+    config = function(_, opts)
+      for _, source in ipairs(opts.sources) do
+        source.group_index = source.group_index or 1
+      end
+      require("cmp").setup(opts)
     end,
   },
 }
