@@ -1,4 +1,26 @@
-local Util = require("lmp.utils")
+
+
+local lua_ls_setup = {
+    lua = {
+      -- runtime = {
+      --       -- tell the language server which version of lua you're using (most likely luajit in the case of neovim)
+      --     version = "luajit",
+      --   },
+        diagnostics = {
+            -- get the language server to recognize the `vim` global
+            globals = { "vim" },
+        },
+        workspace = {
+            -- make the server aware of neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true), 
+        },
+        -- do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+            enable = false,
+          },
+        },
+}
+local util = require("lmp.utils")
 
 return {
   {
@@ -26,8 +48,11 @@ return {
           require("mason-lspconfig").setup(opts)
           require("mason-lspconfig").setup_handlers({
             function(server_name)
-              require("lspconfig")[server_name].setup({})
-            end,
+             require("lspconfig")[server_name].setup({})
+             if server_name == "lua_ls" then
+               require("lspconfig")[server_name].setup(lua_ls_setup)
+            end
+          end
           })
         end,
         keys = {
