@@ -23,9 +23,11 @@ require("lazy").setup({
     priority = 1000,
   },
   { import = "lmp.plugins" },
+  { import = "lmp.plugins.langs.go"},
+  { import = "lmp.plugins.langs.html"}
 })
 
-require("neodev").setup()
+require("neodev").setup({})
 
 vim.cmd.colorscheme("catppuccin")
 vim.o.guifont = "FiraCode Nerd Font Mono:h22"
